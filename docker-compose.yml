@@ -1,13 +1,15 @@
-version: "3.8"
+version: '3.8'
 
 services:
   backend:
     container_name: account
+    image: account-dev
     build:
       context: .
-      dockerfile: AccountService/docker/nest/Dockerfile
+      dockerfile: docker/nest/Dockerfile.dev
     volumes:
-      - ./AccountService:/var/www
+      - .:/improve
+    env_file:
+      - docker/nest/docker.env
     ports:
-      - "3000:3000"
-    working_dir: /var/www
+      - '3000:3000'
