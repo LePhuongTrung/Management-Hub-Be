@@ -1,6 +1,7 @@
 FROM node:20-alpine as build
 
 WORKDIR /app
+RUN npm i -g yarn
 RUN apk add --no-cache libc6-compat
 
 ENV NODE_ENV production
@@ -19,6 +20,7 @@ USER myuser
 FROM node:20-alpine as prod
 
 WORKDIR /app
+RUN npm i -g yarn
 RUN apk add --no-cache libc6-compat
 
 ENV NODE_ENV production
