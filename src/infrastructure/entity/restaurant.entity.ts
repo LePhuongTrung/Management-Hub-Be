@@ -22,13 +22,13 @@ export class Restaurant {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'brand_id' })
   brandId: number;
 
   @Column({ type: 'varchar' })
   location: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true , name: 'restaurant_description'})
   restaurantDescription?: string;
 
   @CreateDateColumn()

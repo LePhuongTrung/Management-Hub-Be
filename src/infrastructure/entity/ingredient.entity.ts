@@ -17,7 +17,7 @@ export class Ingredient {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true, name: 'ingredient_description' })
   ingredientDescription?: string;
 
   @CreateDateColumn()

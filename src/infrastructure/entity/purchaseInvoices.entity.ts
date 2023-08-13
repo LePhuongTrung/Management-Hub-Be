@@ -15,13 +15,13 @@ export class PurchaseInvoice {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'supplier_id' })
   supplierId: number;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'invoice_date' })
   invoiceDate: Date;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', name: 'total_amount' })
   totalAmount: number;
 
   @ManyToOne(() => Supplier, (supplier) => supplier.purchaseInvoices)

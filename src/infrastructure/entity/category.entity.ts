@@ -20,11 +20,11 @@ export class Category {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'menu_id' })
   @Index()
   menuId: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true, name: 'category_description' })
   categoryDescription?: string;
 
   @CreateDateColumn()

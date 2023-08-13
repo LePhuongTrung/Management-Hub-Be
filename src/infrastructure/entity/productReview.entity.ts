@@ -17,15 +17,16 @@ export class ProductReview {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'product_id' })
   productId: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'account_id' })
   accountId: number;
 
   @Column({
     type: 'enum',
     enum: RatingEnum,
+    default: RatingEnum.OneStar,
   })
   rating: RatingEnum;
 

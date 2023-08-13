@@ -15,10 +15,10 @@ export class ProductIngredient {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'product_id' })
   productId: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'ingredient_id' })
   ingredientId: number;
 
   @Column({ type: 'varchar' })

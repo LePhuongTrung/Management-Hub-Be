@@ -20,24 +20,26 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'customer_id' })
   @Index()
   customerId: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'restaurant_id' })
   @Index()
   restaurantId: number;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'order_date' })
   orderDate: Date;
 
   @Column({
     type: 'enum',
     enum: OrderStatus,
+				default: OrderStatus.PENDING,
+				name: 'order_status',
   })
   orderStatus: number;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', name: 'total_amount' })
   totalAmount: number;
 
   @CreateDateColumn()

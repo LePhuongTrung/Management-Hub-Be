@@ -19,7 +19,7 @@ export class Menu {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'restaurant_id' })
   restaurantId: number;
 
   @Column({ type: 'varchar', nullable: true })

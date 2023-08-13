@@ -17,7 +17,7 @@ export class Brand {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', name: 'accrual_rate' })
   accrualRate: number;
 
   @CreateDateColumn()

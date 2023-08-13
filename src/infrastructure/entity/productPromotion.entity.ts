@@ -13,16 +13,16 @@ export class ProductPromotion {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'product_id' })
   productId: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', name: 'promotion_detail' })
   promotionDetail: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'start_date' })
   startDate: Date;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'end_date' })
   endDate: Date;
 
   @ManyToOne(() => Product, (product) => product.promotions)

@@ -13,16 +13,16 @@ export class InventoryAdjustment {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'inventory_id' })
   inventoryId: number;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', name: 'adjusted_quantity' })
   adjustedQuantity: number;
 
   @Column({ type: 'varchar' })
   reason: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'adjusted_at' })
   adjustedAt: Date;
 
   @ManyToOne(() => Inventory)

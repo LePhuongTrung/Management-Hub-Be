@@ -10,7 +10,7 @@ import {
 
 import { Gender } from '@enums/gender.enum';
 import { AccountStatus } from '@enums/accountStatus.enum';
-
+AccountStatus;
 import { Role } from '@entity/role.entity';
 import { Brand } from '@entity/brand.entity';
 import { Restaurant } from '@entity/restaurant.entity';
@@ -31,31 +31,35 @@ export class Account {
   @Column({ type: 'varchar', nullable: true })
   password?: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'role_id' })
   roleId: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true, name: 'full_name' })
   fullName?: string;
 
-  @Column({ type: 'int', nullable: true })
+  @Column({ type: 'int', nullable: true, name: 'restaurant_id' })
   restaurantId?: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'brand_id' })
   brandId: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', name: 'phone_number' })
   phoneNumber: string;
 
-  @Column({ type: 'enum', enum: Gender })
+  @Column({ type: 'enum', enum: Gender, default: Gender.MALE })
   gender: Gender;
 
   @Column({ type: 'varchar', nullable: true })
   address?: string;
 
-  @Column({ type: 'enum', enum: AccountStatus })
+  @Column({
+    type: 'enum',
+    enum: AccountStatus,
+    default: AccountStatus.UNCONFIRMED,
+  })
   status: AccountStatus;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'token_date' })
   tokenDate: Date;
 
   @CreateDateColumn()

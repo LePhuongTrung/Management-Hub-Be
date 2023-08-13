@@ -20,6 +20,7 @@ export class Role {
   @Column({
     type: 'enum',
     enum: RoleTypes,
+    default: RoleTypes.CUSTOMER,
   })
   name: RoleTypes;
 

@@ -16,13 +16,13 @@ export class CustomerOrderProducts {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', name: 'phone_number' })
   phoneNumber: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'product_id' })
   productId: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int',	name: 'order_id' })
   @Index()
   orderId: number;
 

@@ -23,17 +23,17 @@ export class Product {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', name: 'category_id' })
   @Index()
   categoryId: number;
 
   @Column({ type: 'float' })
   price: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', name: 'image_url' })
   imageUrl: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true, name: 'product_description' })
   productDescription?: string;
 
   @CreateDateColumn()
