@@ -1,5 +1,5 @@
 export enum OrderStatus {
-  WAIT = 1,
+  PENDING = 1,
   SERVED = 2,
   PAID = 3,
   OTHER = 4,
