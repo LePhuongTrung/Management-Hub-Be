@@ -4,13 +4,14 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { ProductIngredient } from '@entity/productIngredient.entity';
 import { Inventory } from '@entity/inventories.entity';
 
 @Entity('ingredients')
-export class Ingredient {
+export class Ingredient extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

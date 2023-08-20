@@ -1,7 +1,7 @@
 export enum IngredientUnitEnum {
-  GRAM = 'gram',
-  KILOGRAM = 'kilogram',
-  MILLILITER = 'milliliter',
-  LITER = 'liter',
-  PIECE = 'piece',
+  GRAM = 1,
+  KILOGRAM = 2,
+  MILLILITER = 3,
+  LITER = 4,
+  PIECE = 5,
 }

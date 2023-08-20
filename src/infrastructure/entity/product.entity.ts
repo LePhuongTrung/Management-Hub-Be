@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
@@ -16,7 +17,7 @@ import { ProductReview } from '@entity/productReview.entity';
 import { ProductPromotion } from '@entity/productPromotion.entity';
 
 @Entity('products')
-export class Product {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

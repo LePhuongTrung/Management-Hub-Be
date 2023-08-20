@@ -5,6 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
   CreateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { RatingEnum } from '@enums/rating.enum';
@@ -13,7 +14,7 @@ import { Product } from '@entity/product.entity';
 import { Account } from '@entity/account.entity';
 
 @Entity('product_reviews')
-export class ProductReview {
+export class ProductReview extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
