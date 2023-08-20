@@ -5,13 +5,14 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { Supplier } from '@entity/supplier.entity';
 import { Inventory } from '@entity/inventories.entity';
 
 @Entity('purchase_invoices')
-export class PurchaseInvoice {
+export class PurchaseInvoice extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

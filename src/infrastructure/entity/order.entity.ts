@@ -7,6 +7,7 @@ import {
   OneToMany,
   Index,
   CreateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { OrderStatus } from '@enums/orderStatus.enum';
@@ -16,7 +17,7 @@ import { Restaurant } from '@entity/restaurant.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
 
 @Entity('orders')
-export class Order {
+export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -34,8 +35,8 @@ export class Order {
   @Column({
     type: 'enum',
     enum: OrderStatus,
-				default: OrderStatus.PENDING,
-				name: 'order_status',
+    default: OrderStatus.PENDING,
+    name: 'order_status',
   })
   orderStatus: number;
 

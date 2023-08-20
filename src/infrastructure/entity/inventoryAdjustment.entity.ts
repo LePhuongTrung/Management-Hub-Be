@@ -4,12 +4,13 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
 
 @Entity('inventory_adjustments')
-export class InventoryAdjustment {
+export class InventoryAdjustment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

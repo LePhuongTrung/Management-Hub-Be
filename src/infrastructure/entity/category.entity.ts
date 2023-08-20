@@ -7,13 +7,14 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+		BaseEntity
 } from 'typeorm';
 
 import { Menu } from '@entity/menu.entity';
 import { Product } from '@entity/product.entity';
 
 @Entity('categories')
-export class Category {
+export class Category extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

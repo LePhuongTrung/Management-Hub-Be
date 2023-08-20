@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { IngredientUnitEnum } from '@enums/ingredient.enum';
@@ -16,7 +17,7 @@ import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
 import { InventoryAdjustment } from '@entity/inventoryAdjustment.entity';
 
 @Entity('inventories')
-export class Inventory {
+export class Inventory extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -45,7 +46,7 @@ export class Inventory {
   @Column({
     type: 'enum',
     enum: IngredientUnitEnum,
-				default: IngredientUnitEnum.GRAM,
+    default: IngredientUnitEnum.GRAM,
   })
   unit: IngredientUnitEnum;
 

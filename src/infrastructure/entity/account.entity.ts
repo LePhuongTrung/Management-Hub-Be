@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { Gender } from '@enums/gender.enum';
@@ -18,7 +19,7 @@ import { Order } from '@entity/order.entity';
 import { ProductReview } from '@entity/productReview.entity';
 
 @Entity('accounts')
-export class Account {
+export class Account extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

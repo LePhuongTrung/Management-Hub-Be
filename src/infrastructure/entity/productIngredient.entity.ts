@@ -5,13 +5,14 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { Product } from '@entity/product.entity';
 import { Ingredient } from '@entity/ingredient.entity';
 
 @Entity('product_ingredients')
-export class ProductIngredient {
+export class ProductIngredient extends BaseEntity  {
   @PrimaryGeneratedColumn()
   id: number;
 

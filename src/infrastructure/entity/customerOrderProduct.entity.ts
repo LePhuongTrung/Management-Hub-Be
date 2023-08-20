@@ -6,13 +6,14 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { Order } from '@entity/order.entity';
 import { Product } from '@entity/product.entity';
 
 @Entity('customer_order_products')
-export class CustomerOrderProducts {
+export class CustomerOrderProducts extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,7 +23,7 @@ export class CustomerOrderProducts {
   @Column({ type: 'int', name: 'product_id' })
   productId: number;
 
-  @Column({ type: 'int',	name: 'order_id' })
+  @Column({ type: 'int', name: 'order_id' })
   @Index()
   orderId: number;
 

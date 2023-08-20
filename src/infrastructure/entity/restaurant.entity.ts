@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 import { Brand } from '@entity/brand.entity';
@@ -15,7 +16,7 @@ import { Inventory } from '@entity/inventories.entity';
 import { Order } from '@entity/order.entity';
 
 @Entity('restaurants')
-export class Restaurant {
+export class Restaurant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,7 +29,7 @@ export class Restaurant {
   @Column({ type: 'varchar' })
   location: string;
 
-  @Column({ type: 'varchar', nullable: true , name: 'restaurant_description'})
+  @Column({ type: 'varchar', nullable: true, name: 'restaurant_description' })
   restaurantDescription?: string;
 
   @CreateDateColumn()
