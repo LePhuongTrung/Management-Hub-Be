@@ -11,7 +11,6 @@ import {
 
 import { Gender } from '@enums/gender.enum';
 import { AccountStatus } from '@enums/accountStatus.enum';
-AccountStatus;
 import { Role } from '@entity/role.entity';
 import { Brand } from '@entity/brand.entity';
 import { Restaurant } from '@entity/restaurant.entity';
