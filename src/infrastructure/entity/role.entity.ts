@@ -8,6 +8,8 @@ import {
   BaseEntity,
 } from 'typeorm';
 
+import { RoleTypes } from '@enums/roleTypes.enum';
+
 import { Account } from '@entity/account.entity';
 
 @Entity('roles')
@@ -17,7 +19,10 @@ export class Role extends BaseEntity {
   id: number;
 
   @Column({
-    type: 'varchar',
+    type: 'enum',
+    enum: RoleTypes,
+    default: RoleTypes,
+    unique: true,
   })
   name: string;
 
