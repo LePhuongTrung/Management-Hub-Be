@@ -1,0 +1,25 @@
+module.exports = [
+  {
+    name: 'default',
+    type: 'postgres',
+    host: process.env.POSTGRES_HOST,
+    port: process.env.POSTGRES_PORT,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
+    entities: ['dist/infrastructure/entity/*.entity.js'],
+    migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
+    factories: ['dist/database/factories/*.factory.js'],
+    seeds: ['dist/database/seeds/*.seed.js'],
+    synchronize: true,
+    autoLoadEntities: true,
+  },
+  {
+    name: 'memory',
+    type: 'sqlite',
+    database: ':memory:',
+    entities: ['sample/entities/**/*{.ts,.js}'],
+    factories: ['sample/factories/**/*{.ts,.js}'],
+    seeds: ['sample/seeds/**/*{.ts,.js}'],
+  },
+];

@@ -19,6 +19,8 @@ import DatabaseLogger from '@config/databaseLogger';
         // entities: ['src/infrastructure/entity/*.entity{.ts,.js}'],
         entities: ['dist/infrastructure/entity/*.entity.js'],
         migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
+        factories: ['dist/database/factories/*.{js,ts}'],
+        seeds: ['dist/database/seeds/*.{js,ts}'],
         synchronize: true,
         autoLoadEntities: true,
         cli: {
