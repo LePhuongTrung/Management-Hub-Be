@@ -11,4 +11,4 @@ COPY --chown=node:node . /improve
 
 USER myuser
 
-CMD yarn --frozen-lockfile && yarn start:dev
+CMD yarn install && yarn start:dev
