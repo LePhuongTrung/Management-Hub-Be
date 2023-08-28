@@ -11,10 +11,10 @@ import {
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
-import { ProductIngredient } from '@entity/productIngredient.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
-import { ProductReview } from '@entity/productReview.entity';
+import { ProductIngredient } from '@entity/productIngredient.entity';
 import { ProductPromotion } from '@entity/productPromotion.entity';
+import { ProductReview } from '@entity/productReview.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {

@@ -8,8 +8,8 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { Supplier } from '@entity/supplier.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { Supplier } from '@entity/supplier.entity';
 
 @Entity('purchase_invoices')
 export class PurchaseInvoice extends BaseEntity {

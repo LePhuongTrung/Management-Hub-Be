@@ -4,7 +4,7 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
-		BaseEntity
+  BaseEntity,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';

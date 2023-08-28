@@ -9,12 +9,11 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { IngredientUnitEnum } from '@enums/ingredient.enum';
-
 import { Ingredient } from '@entity/ingredient.entity';
-import { Restaurant } from '@entity/restaurant.entity';
-import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
 import { InventoryAdjustment } from '@entity/inventoryAdjustment.entity';
+import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
+import { Restaurant } from '@entity/restaurant.entity';
+import { IngredientUnitEnum } from '@enums/ingredient.enum';
 
 @Entity('inventories')
 export class Inventory extends BaseEntity {

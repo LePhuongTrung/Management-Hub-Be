@@ -9,13 +9,13 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { Gender } from '@enums/gender.enum';
-import { AccountStatus } from '@enums/accountStatus.enum';
-import { Role } from '@entity/role.entity';
 import { Brand } from '@entity/brand.entity';
-import { Restaurant } from '@entity/restaurant.entity';
 import { Order } from '@entity/order.entity';
 import { ProductReview } from '@entity/productReview.entity';
+import { Restaurant } from '@entity/restaurant.entity';
+import { Role } from '@entity/role.entity';
+import { AccountStatus } from '@enums/accountStatus.enum';
+import { Gender } from '@enums/gender.enum';
 
 @Entity('accounts')
 export class Account extends BaseEntity {

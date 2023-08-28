@@ -8,11 +8,11 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { Product } from '@entity/product.entity';
 import { Ingredient } from '@entity/ingredient.entity';
+import { Product } from '@entity/product.entity';
 
 @Entity('product_ingredients')
-export class ProductIngredient extends BaseEntity  {
+export class ProductIngredient extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

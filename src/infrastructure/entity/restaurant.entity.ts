@@ -9,10 +9,10 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { Brand } from '@entity/brand.entity';
-import { Menu } from '@entity/menu.entity';
 import { Account } from '@entity/account.entity';
+import { Brand } from '@entity/brand.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { Menu } from '@entity/menu.entity';
 import { Order } from '@entity/order.entity';
 
 @Entity('restaurants')

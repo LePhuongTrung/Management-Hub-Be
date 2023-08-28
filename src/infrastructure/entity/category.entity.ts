@@ -7,7 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
-		BaseEntity
+  BaseEntity,
 } from 'typeorm';
 
 import { Menu } from '@entity/menu.entity';

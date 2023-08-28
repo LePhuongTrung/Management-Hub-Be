@@ -7,8 +7,8 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { ProductIngredient } from '@entity/productIngredient.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { ProductIngredient } from '@entity/productIngredient.entity';
 
 @Entity('ingredients')
 export class Ingredient extends BaseEntity {

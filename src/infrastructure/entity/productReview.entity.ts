@@ -8,10 +8,9 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { RatingEnum } from '@enums/rating.enum';
-
-import { Product } from '@entity/product.entity';
 import { Account } from '@entity/account.entity';
+import { Product } from '@entity/product.entity';
+import { RatingEnum } from '@enums/rating.enum';
 
 @Entity('product_reviews')
 export class ProductReview extends BaseEntity {

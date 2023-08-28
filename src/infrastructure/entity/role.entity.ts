@@ -8,9 +8,8 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { RoleTypes } from '@enums/roleTypes.enum';
-
 import { Account } from '@entity/account.entity';
+import { RoleTypes } from '@enums/roleTypes.enum';
 
 @Entity('roles')
 @Unique(['name'])

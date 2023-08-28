@@ -9,8 +9,8 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { Restaurant } from '@entity/restaurant.entity';
 import { Category } from '@entity/category.entity';
+import { Restaurant } from '@entity/restaurant.entity';
 
 @Entity('menus')
 export class Menu extends BaseEntity {

@@ -10,11 +10,10 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-import { OrderStatus } from '@enums/orderStatus.enum';
-
 import { Account } from '@entity/account.entity';
-import { Restaurant } from '@entity/restaurant.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
+import { Restaurant } from '@entity/restaurant.entity';
+import { OrderStatus } from '@enums/orderStatus.enum';
 
 @Entity('orders')
 export class Order extends BaseEntity {
