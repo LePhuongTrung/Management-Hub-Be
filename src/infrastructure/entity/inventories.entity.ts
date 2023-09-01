@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,6 +10,9 @@ import {
   BaseEntity,
   UpdateDateColumn,
   DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
 import { Ingredient } from '@entity/ingredient.entity';
@@ -16,6 +20,7 @@ import { InventoryAdjustment } from '@entity/inventoryAdjustment.entity';
 import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
 import { Restaurant } from '@entity/restaurant.entity';
 import { IngredientUnitEnum } from '@enums/ingredient.enum';
+import { BadRequestMessages } from '@enums/message.enum';
 
 @Entity('inventories')
 export class Inventory extends BaseEntity {
@@ -46,10 +51,18 @@ export class Inventory extends BaseEntity {
 
   @Column({
     default: IngredientUnitEnum.GRAM,
-    enum: IngredientUnitEnum,
-    type: 'enum',
+    type: 'int',
   })
-  unit: IngredientUnitEnum;
+  unit: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateUnit(): void {
+    if (!Object.values(IngredientUnitEnum).includes(this.unit)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @CreateDateColumn()
   createdAt: Date;

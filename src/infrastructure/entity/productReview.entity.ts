@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -8,10 +9,14 @@ import {
   BaseEntity,
   UpdateDateColumn,
   DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
 import { Product } from '@entity/product.entity';
+import { BadRequestMessages } from '@enums/message.enum';
 import { RatingEnum } from '@enums/rating.enum';
 
 @Entity('product_reviews')
@@ -27,10 +32,18 @@ export class ProductReview extends BaseEntity {
 
   @Column({
     default: RatingEnum.OneStar,
-    enum: RatingEnum,
-    type: 'enum',
+    type: 'int',
   })
-  rating: RatingEnum;
+  rating: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateRating(): void {
+    if (!Object.values(RatingEnum).includes(this.rating)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @Column({ type: 'varchar' })
   comment: string;

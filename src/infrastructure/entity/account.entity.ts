@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,6 +10,9 @@ import {
   BaseEntity,
   UpdateDateColumn,
   DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
 import { Brand } from '@entity/brand.entity';
@@ -18,6 +22,7 @@ import { Restaurant } from '@entity/restaurant.entity';
 import { Role } from '@entity/role.entity';
 import { AccountStatus } from '@enums/accountStatus.enum';
 import { Gender } from '@enums/gender.enum';
+import { BadRequestMessages } from '@enums/message.enum';
 
 @Entity('accounts')
 export class Account extends BaseEntity {
@@ -48,18 +53,38 @@ export class Account extends BaseEntity {
   @Column({ name: 'phone_number', type: 'varchar' })
   phoneNumber: string;
 
-  @Column({ default: Gender.MALE, enum: Gender, type: 'enum' })
-  gender: Gender;
+  @Column({
+    default: Gender.MALE,
+    type: 'int',
+  })
+  gender: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateGender(): void {
+    if (!Object.values(Gender).includes(this.gender)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @Column({ nullable: true, type: 'varchar' })
   address?: string;
 
   @Column({
     default: AccountStatus.UNCONFIRMED,
-    enum: AccountStatus,
-    type: 'enum',
+    type: 'int',
   })
-  status: AccountStatus;
+  status: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateStatusRate(): void {
+    if (!Object.values(AccountStatus).includes(this.status)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @Column({ name: 'token_date', type: 'timestamp' })
   tokenDate: Date;

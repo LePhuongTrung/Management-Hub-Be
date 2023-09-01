@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,11 +11,15 @@ import {
   BaseEntity,
   UpdateDateColumn,
   DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
 import { Restaurant } from '@entity/restaurant.entity';
+import { BadRequestMessages } from '@enums/message.enum';
 import { OrderStatus } from '@enums/orderStatus.enum';
 
 @Entity('orders')
@@ -35,11 +40,18 @@ export class Order extends BaseEntity {
 
   @Column({
     default: OrderStatus.PENDING,
-    enum: OrderStatus,
-    name: 'order_status',
-    type: 'enum',
+    type: 'int',
   })
   orderStatus: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateOrderStatus(): void {
+    if (!Object.values(OrderStatus).includes(this.orderStatus)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
