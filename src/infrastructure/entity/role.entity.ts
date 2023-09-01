@@ -18,14 +18,14 @@ export class Role extends BaseEntity {
   id: number;
 
   @Column({
-    type: 'enum',
-    enum: RoleTypes,
     default: RoleTypes.CUSTOMER,
+    enum: RoleTypes,
+    type: 'enum',
     unique: true,
   })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()

@@ -18,7 +18,7 @@ export class Ingredient extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'ingredient_description' })
+  @Column({ name: 'ingredient_description', nullable: true, type: 'varchar' })
   ingredientDescription?: string;
 
   @CreateDateColumn()

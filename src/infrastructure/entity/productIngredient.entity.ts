@@ -16,10 +16,10 @@ export class ProductIngredient extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'product_id' })
+  @Column({ name: 'product_id', type: 'int' })
   productId: number;
 
-  @Column({ type: 'int', name: 'ingredient_id' })
+  @Column({ name: 'ingredient_id', type: 'int' })
   ingredientId: number;
 
   @Column({ type: 'varchar' })

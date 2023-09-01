@@ -20,7 +20,7 @@ export class Supplier extends BaseEntity {
   @Column({ type: 'varchar' })
   address: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()

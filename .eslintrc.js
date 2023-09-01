@@ -12,6 +12,7 @@ module.exports = {
     'security',
     'clean-code',
     'sonarjs',
+    'canonical',
   ],
   extends: [
     'eslint:recommended',
@@ -25,6 +26,7 @@ module.exports = {
     'plugin:nestjs/recommended',
     'plugin:security/recommended',
     'plugin:sonarjs/recommended',
+    'plugin:canonical/recommended',
   ],
   root: true,
   env: {

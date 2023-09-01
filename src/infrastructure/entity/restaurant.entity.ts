@@ -23,13 +23,13 @@ export class Restaurant extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'brand_id' })
+  @Column({ name: 'brand_id', type: 'int' })
   brandId: number;
 
   @Column({ type: 'varchar' })
   location: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'restaurant_description' })
+  @Column({ name: 'restaurant_description', nullable: true, type: 'varchar' })
   restaurantDescription?: string;
 
   @CreateDateColumn()

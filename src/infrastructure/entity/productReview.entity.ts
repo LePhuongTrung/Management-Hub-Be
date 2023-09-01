@@ -17,16 +17,16 @@ export class ProductReview extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'product_id' })
+  @Column({ name: 'product_id', type: 'int' })
   productId: number;
 
-  @Column({ type: 'int', name: 'account_id' })
+  @Column({ name: 'account_id', type: 'int' })
   accountId: number;
 
   @Column({
-    type: 'enum',
-    enum: RatingEnum,
     default: RatingEnum.OneStar,
+    enum: RatingEnum,
+    type: 'enum',
   })
   rating: RatingEnum;
 

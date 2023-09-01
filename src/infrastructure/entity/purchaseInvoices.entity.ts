@@ -16,13 +16,13 @@ export class PurchaseInvoice extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'supplier_id' })
+  @Column({ name: 'supplier_id', type: 'int' })
   supplierId: number;
 
-  @Column({ type: 'timestamp', name: 'invoice_date' })
+  @Column({ name: 'invoice_date', type: 'timestamp' })
   invoiceDate: Date;
 
-  @Column({ type: 'float', name: 'total_amount' })
+  @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
 
   @ManyToOne(() => Supplier, (supplier) => supplier.purchaseInvoices)

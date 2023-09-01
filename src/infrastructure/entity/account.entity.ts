@@ -22,44 +22,44 @@ export class Account extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   token?: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   username?: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   password?: string;
 
-  @Column({ type: 'int', name: 'role_id' })
+  @Column({ name: 'role_id', type: 'int' })
   roleId: number;
 
-  @Column({ type: 'varchar', nullable: true, name: 'full_name' })
+  @Column({ name: 'full_name', nullable: true, type: 'varchar' })
   fullName?: string;
 
-  @Column({ type: 'int', nullable: true, name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', nullable: true, type: 'int' })
   restaurantId?: number;
 
-  @Column({ type: 'int', name: 'brand_id' })
+  @Column({ name: 'brand_id', type: 'int' })
   brandId: number;
 
-  @Column({ type: 'varchar', name: 'phone_number' })
+  @Column({ name: 'phone_number', type: 'varchar' })
   phoneNumber: string;
 
-  @Column({ type: 'enum', enum: Gender, default: Gender.MALE })
+  @Column({ default: Gender.MALE, enum: Gender, type: 'enum' })
   gender: Gender;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   address?: string;
 
   @Column({
-    type: 'enum',
-    enum: AccountStatus,
     default: AccountStatus.UNCONFIRMED,
+    enum: AccountStatus,
+    type: 'enum',
   })
   status: AccountStatus;
 
-  @Column({ type: 'timestamp', name: 'token_date' })
+  @Column({ name: 'token_date', type: 'timestamp' })
   tokenDate: Date;
 
   @CreateDateColumn()

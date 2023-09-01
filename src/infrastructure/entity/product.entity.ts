@@ -24,17 +24,17 @@ export class Product extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'category_id' })
+  @Column({ name: 'category_id', type: 'int' })
   @Index()
   categoryId: number;
 
   @Column({ type: 'float' })
   price: number;
 
-  @Column({ type: 'varchar', name: 'image_url' })
+  @Column({ name: 'image_url', type: 'varchar' })
   imageUrl: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'product_description' })
+  @Column({ name: 'product_description', nullable: true, type: 'varchar' })
   productDescription?: string;
 
   @CreateDateColumn()

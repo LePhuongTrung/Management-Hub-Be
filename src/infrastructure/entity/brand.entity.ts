@@ -18,7 +18,7 @@ export class Brand extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'float', name: 'accrual_rate' })
+  @Column({ name: 'accrual_rate', type: 'float' })
   accrualRate: number;
 
   @CreateDateColumn()

@@ -7,13 +7,13 @@ import { AppController } from '@src/app.controller';
 import { AppService } from '@src/app.service';
 
 @Module({
+  controllers: [AppController],
   imports: [
     DatabaseModule,
     ConfigModule.forRoot({
       load: [config],
     }),
   ],
-  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

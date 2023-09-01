@@ -20,10 +20,10 @@ export class Menu extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   restaurantId: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()

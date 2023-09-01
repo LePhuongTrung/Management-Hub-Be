@@ -20,26 +20,26 @@ export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'customer_id' })
+  @Column({ name: 'customer_id', type: 'int' })
   @Index()
   customerId: number;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   @Index()
   restaurantId: number;
 
-  @Column({ type: 'timestamp', name: 'order_date' })
+  @Column({ name: 'order_date', type: 'timestamp' })
   orderDate: Date;
 
   @Column({
-    type: 'enum',
-    enum: OrderStatus,
     default: OrderStatus.PENDING,
+    enum: OrderStatus,
     name: 'order_status',
+    type: 'enum',
   })
   orderStatus: number;
 
-  @Column({ type: 'float', name: 'total_amount' })
+  @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
 
   @CreateDateColumn()

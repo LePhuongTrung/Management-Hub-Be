@@ -21,11 +21,11 @@ export class Category extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'menu_id' })
+  @Column({ name: 'menu_id', type: 'int' })
   @Index()
   menuId: number;
 
-  @Column({ type: 'varchar', nullable: true, name: 'category_description' })
+  @Column({ name: 'category_description', nullable: true, type: 'varchar' })
   categoryDescription?: string;
 
   @CreateDateColumn()

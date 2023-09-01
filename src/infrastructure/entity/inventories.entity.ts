@@ -20,32 +20,32 @@ export class Inventory extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'ingredient_id' })
+  @Column({ name: 'ingredient_id', type: 'int' })
   ingredientId: number;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   restaurantId: number;
 
-  @Column({ type: 'int', name: 'purchase_invoice_id' })
+  @Column({ name: 'purchase_invoice_id', type: 'int' })
   purchaseInvoiceId: number;
 
   // Price of ingredient when it was purchased
   @Column({
-    type: 'float',
     name: 'price_in',
+    type: 'float',
   })
   priceIn: number;
 
-  @Column({ type: 'float', name: 'quantity_in' })
+  @Column({ name: 'quantity_in', type: 'float' })
   quantityIn: number;
 
   @Column({ type: 'float' })
   quantity: number;
 
   @Column({
-    type: 'enum',
-    enum: IngredientUnitEnum,
     default: IngredientUnitEnum.GRAM,
+    enum: IngredientUnitEnum,
+    type: 'enum',
   })
   unit: IngredientUnitEnum;
 
