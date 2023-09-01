@@ -4,7 +4,11 @@ import { Logger as TypeOrmLogger, QueryRunner } from 'typeorm';
 class DatabaseLogger implements TypeOrmLogger {
   private readonly logger = new NestLogger('SQL');
 
-  logQuery(query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+  logQuery(
+    query: string,
+    parameters?: unknown[],
+    queryRunner?: QueryRunner,
+  ): void {
     if (queryRunner?.data?.isCreatingLogs) {
       return;
     }
@@ -12,12 +16,13 @@ class DatabaseLogger implements TypeOrmLogger {
       `${query} -- Parameters: ${this.stringifyParameters(parameters)}`,
     );
   }
+
   logQueryError(
     error: string,
     query: string,
     parameters?: unknown[],
     queryRunner?: QueryRunner,
-  ) {
+  ): void {
     if (queryRunner?.data?.isCreatingLogs) {
       return;
     }
@@ -27,12 +32,13 @@ class DatabaseLogger implements TypeOrmLogger {
       )} -- ${error}`,
     );
   }
+
   logQuerySlow(
     time: number,
     query: string,
     parameters?: unknown[],
     queryRunner?: QueryRunner,
-  ) {
+  ): void {
     if (queryRunner?.data?.isCreatingLogs) {
       return;
     }
@@ -42,17 +48,20 @@ class DatabaseLogger implements TypeOrmLogger {
       )} -- ${query}`,
     );
   }
-  logMigration(message: string) {
+
+  logMigration(message: string): void {
     this.logger.log(message);
   }
-  logSchemaBuild(message: string) {
+
+  logSchemaBuild(message: string): void {
     this.logger.log(message);
   }
+
   log(
     level: 'log' | 'info' | 'warn',
     message: string,
     queryRunner?: QueryRunner,
-  ) {
+  ): void {
     if (queryRunner?.data?.isCreatingLogs) {
       return;
     }
@@ -66,7 +75,8 @@ class DatabaseLogger implements TypeOrmLogger {
       return this.logger.warn(message);
     }
   }
-  private stringifyParameters(parameters?: unknown[]) {
+
+  private stringifyParameters(parameters?: unknown[]): string {
     try {
       return JSON.stringify(parameters);
     } catch {

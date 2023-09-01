@@ -1,10 +1,16 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaVersion: 2021,
     project: 'tsconfig.json',
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
+  env: {
+    node: true,
+    jest: true,
+  },
+  root: true,
   plugins: [
     '@typescript-eslint/eslint-plugin',
     'import',
@@ -13,6 +19,7 @@ module.exports = {
     'clean-code',
     'sonarjs',
     'canonical',
+    'promise',
   ],
   extends: [
     'eslint:recommended',
@@ -27,18 +34,8 @@ module.exports = {
     'plugin:security/recommended',
     'plugin:sonarjs/recommended',
     'plugin:canonical/recommended',
-  ],
-  root: true,
-  env: {
-    node: true,
-    jest: true,
-  },
-  ignorePatterns: [
-    'dist/*',
-    '.next/*',
-    'node_modules/*',
-    '.eslintrc.js',
-    '*.json',
+    'plugin:n/recommended',
+    'plugin:promise/recommended',
   ],
   rules: {
     'import/order': [
@@ -52,17 +49,15 @@ module.exports = {
           ['parent', 'sibling'],
           'index',
         ],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
+        alphabetize: { order: 'asc', caseInsensitive: true },
       },
     ],
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
+    'n/no-missing-import': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-var-requires': 'error',
     '@typescript-eslint/ban-ts-comment': 'warn',
@@ -72,12 +67,20 @@ module.exports = {
     'nestjs/use-dependency-injection': 'error',
     'nestjs/use-validation-pipe': 'error',
     'clean-code/feature-envy': 'error',
+    'n/exports-style': ['error', 'module.exports'],
+    'canonical/import-specifier-newline': 'off',
   },
   settings: {
+    'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
     'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
+      typescript: { alwaysTryTypes: true, directory: './tsconfig.json' },
     },
   },
+  ignorePatterns: [
+    'dist/*',
+    '.next/*',
+    'node_modules/*',
+    '.eslintrc.js',
+    '*.json',
+  ],
 };

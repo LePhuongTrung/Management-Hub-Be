@@ -1,4 +1,20 @@
-export default () => ({
+interface Config {
+  cors: {
+    methods: string;
+    origin: string;
+  };
+  environment: string;
+  jwt: {
+    expiresIn: string;
+    secret: string;
+  };
+  logging: {
+    level: string;
+  };
+  port: string | number;
+}
+
+export default (): Config => ({
   cors: {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     origin: 'http://localhost:3000',
