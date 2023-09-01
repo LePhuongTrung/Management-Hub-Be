@@ -8,6 +8,8 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Menu } from '@entity/menu.entity';
@@ -30,6 +32,12 @@ export class Category extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Menu, (menu) => menu.categories)
   @JoinColumn({ name: 'menu_id' })

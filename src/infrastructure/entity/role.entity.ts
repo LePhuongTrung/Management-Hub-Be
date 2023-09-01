@@ -6,6 +6,8 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
@@ -30,6 +32,12 @@ export class Role extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(() => Account, (account) => account.roles)
   accounts: Account[];

@@ -5,6 +5,8 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
@@ -25,6 +27,12 @@ export class Supplier extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(
     () => PurchaseInvoice,

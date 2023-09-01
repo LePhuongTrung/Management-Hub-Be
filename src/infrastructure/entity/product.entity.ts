@@ -8,6 +8,8 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
@@ -39,6 +41,12 @@ export class Product extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })

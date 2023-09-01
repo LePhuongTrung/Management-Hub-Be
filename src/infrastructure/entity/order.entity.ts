@@ -8,6 +8,8 @@ import {
   Index,
   CreateDateColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
@@ -44,6 +46,12 @@ export class Order extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Account, (account) => account.orders)
   @JoinColumn({ name: 'customer_id' })

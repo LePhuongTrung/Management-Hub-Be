@@ -5,6 +5,9 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Product } from '@entity/product.entity';
@@ -25,6 +28,15 @@ export class ProductPromotion extends BaseEntity {
 
   @Column({ name: 'end_date', type: 'timestamp' })
   endDate: Date;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.promotions)
   @JoinColumn({ name: 'product_id' })

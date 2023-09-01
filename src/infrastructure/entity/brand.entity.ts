@@ -5,10 +5,13 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
 import { Restaurant } from '@entity/restaurant.entity';
+import { RatingEnum } from '@enums/rating.enum';
 
 @Entity('brands')
 export class Brand extends BaseEntity {
@@ -18,11 +21,22 @@ export class Brand extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ name: 'accrual_rate', type: 'float' })
+  @Column({
+    default: RatingEnum.OneStar,
+    enum: RatingEnum,
+    name: 'accrual_rate',
+    type: 'enum',
+  })
   accrualRate: number;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(() => Restaurant, (restaurant) => restaurant.brands)
   restaurants: Restaurant[];

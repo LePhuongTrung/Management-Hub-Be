@@ -6,6 +6,8 @@ import {
   JoinColumn,
   CreateDateColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
@@ -35,6 +37,12 @@ export class ProductReview extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.reviews)
   @JoinColumn({ name: 'product_id' })

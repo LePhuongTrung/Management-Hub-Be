@@ -7,6 +7,8 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Brand } from '@entity/brand.entity';
@@ -64,6 +66,12 @@ export class Account extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Role, (role) => role.accounts)
   @JoinColumn({ name: 'role_id' })

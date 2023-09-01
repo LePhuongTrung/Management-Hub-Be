@@ -7,6 +7,8 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Order } from '@entity/order.entity';
@@ -38,6 +40,12 @@ export class CustomerOrderProducts extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Order, (order) => order.customerOrderProducts)
   @JoinColumn({ name: 'order_id' })

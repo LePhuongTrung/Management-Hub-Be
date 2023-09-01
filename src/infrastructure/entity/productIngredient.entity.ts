@@ -6,6 +6,8 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Ingredient } from '@entity/ingredient.entity';
@@ -27,6 +29,12 @@ export class ProductIngredient extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.productIngredients)
   @JoinColumn({ name: 'product_id' })

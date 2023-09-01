@@ -5,6 +5,8 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
@@ -23,6 +25,12 @@ export class Ingredient extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(
     () => ProductIngredient,

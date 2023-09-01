@@ -6,6 +6,9 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
@@ -24,6 +27,15 @@ export class PurchaseInvoice extends BaseEntity {
 
   @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Supplier, (supplier) => supplier.purchaseInvoices)
   @JoinColumn({ name: 'product_id' })
