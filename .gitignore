@@ -30,3 +30,7 @@ yarn-error.log*
 
 ### Database dev ###
 postgresql/data/
+
+### Docker ###
+docker/database/data
+docker/database/pgAdmin
