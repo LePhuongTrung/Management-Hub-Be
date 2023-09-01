@@ -6,24 +6,36 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { Supplier } from '@entity/supplier.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { Supplier } from '@entity/supplier.entity';
 
 @Entity('purchase_invoices')
 export class PurchaseInvoice extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'supplier_id' })
+  @Column({ name: 'supplier_id', type: 'int' })
   supplierId: number;
 
-  @Column({ type: 'timestamp', name: 'invoice_date' })
+  @Column({ name: 'invoice_date', type: 'timestamp' })
   invoiceDate: Date;
 
-  @Column({ type: 'float', name: 'total_amount' })
+  @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Supplier, (supplier) => supplier.purchaseInvoices)
   @JoinColumn({ name: 'product_id' })

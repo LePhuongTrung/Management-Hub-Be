@@ -5,6 +5,9 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
@@ -14,19 +17,28 @@ export class InventoryAdjustment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'inventory_id' })
+  @Column({ name: 'inventory_id', type: 'int' })
   inventoryId: number;
 
-  @Column({ type: 'float', name: 'adjusted_quantity' })
+  @Column({ name: 'adjusted_quantity', type: 'float' })
   adjustedQuantity: number;
 
   @Column({ type: 'varchar' })
   reason: string;
 
-  @Column({ type: 'timestamp', name: 'adjusted_at' })
+  @Column({ name: 'adjusted_at', type: 'timestamp' })
   adjustedAt: Date;
 
   @ManyToOne(() => Inventory)
   @JoinColumn({ name: 'inventory_id' })
   inventory: Inventory;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 }

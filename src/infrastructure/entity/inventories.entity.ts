@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -7,51 +8,70 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
-import { IngredientUnitEnum } from '@enums/ingredient.enum';
-
 import { Ingredient } from '@entity/ingredient.entity';
-import { Restaurant } from '@entity/restaurant.entity';
-import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
 import { InventoryAdjustment } from '@entity/inventoryAdjustment.entity';
+import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
+import { Restaurant } from '@entity/restaurant.entity';
+import { IngredientUnitEnum } from '@enums/ingredient.enum';
+import { BadRequestMessages } from '@enums/message.enum';
 
 @Entity('inventories')
 export class Inventory extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'ingredient_id' })
+  @Column({ name: 'ingredient_id', type: 'int' })
   ingredientId: number;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   restaurantId: number;
 
-  @Column({ type: 'int', name: 'purchase_invoice_id' })
+  @Column({ name: 'purchase_invoice_id', type: 'int' })
   purchaseInvoiceId: number;
 
   // Price of ingredient when it was purchased
   @Column({
-    type: 'float',
     name: 'price_in',
+    type: 'float',
   })
   priceIn: number;
 
-  @Column({ type: 'float', name: 'quantity_in' })
+  @Column({ name: 'quantity_in', type: 'float' })
   quantityIn: number;
 
   @Column({ type: 'float' })
   quantity: number;
 
   @Column({
-    type: 'enum',
-    enum: IngredientUnitEnum,
     default: IngredientUnitEnum.GRAM,
+    type: 'int',
   })
-  unit: IngredientUnitEnum;
+  unit: number;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateUnit(): void {
+    if (!Object.values(IngredientUnitEnum).includes(this.unit)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Ingredient, (ingredient) => ingredient.inventories)
   @JoinColumn({ name: 'ingredient_id' })

@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { ProductIngredient } from '@entity/productIngredient.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { ProductIngredient } from '@entity/productIngredient.entity';
 
 @Entity('ingredients')
 export class Ingredient extends BaseEntity {
@@ -18,11 +20,17 @@ export class Ingredient extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'ingredient_description' })
+  @Column({ name: 'ingredient_description', nullable: true, type: 'varchar' })
   ingredientDescription?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(
     () => ProductIngredient,

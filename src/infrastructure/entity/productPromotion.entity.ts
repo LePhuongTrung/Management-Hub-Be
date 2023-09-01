@@ -5,6 +5,9 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Product } from '@entity/product.entity';
@@ -14,17 +17,26 @@ export class ProductPromotion extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'product_id' })
+  @Column({ name: 'product_id', type: 'int' })
   productId: number;
 
-  @Column({ type: 'varchar', name: 'promotion_detail' })
+  @Column({ name: 'promotion_detail', type: 'varchar' })
   promotionDetail: string;
 
-  @Column({ type: 'timestamp', name: 'start_date' })
+  @Column({ name: 'start_date', type: 'timestamp' })
   startDate: Date;
 
-  @Column({ type: 'timestamp', name: 'end_date' })
+  @Column({ name: 'end_date', type: 'timestamp' })
   endDate: Date;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.promotions)
   @JoinColumn({ name: 'product_id' })

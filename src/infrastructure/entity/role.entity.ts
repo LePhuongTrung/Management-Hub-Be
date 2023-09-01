@@ -6,11 +6,12 @@ import {
   CreateDateColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { RoleTypes } from '@enums/roleTypes.enum';
-
 import { Account } from '@entity/account.entity';
+import { RoleTypes } from '@enums/roleTypes.enum';
 
 @Entity('roles')
 @Unique(['name'])
@@ -19,18 +20,24 @@ export class Role extends BaseEntity {
   id: number;
 
   @Column({
-    type: 'enum',
+    default: RoleTypes.CUSTOMER,
     enum: RoleTypes,
-    default: RoleTypes,
+    type: 'enum',
     unique: true,
   })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToMany(() => Account, (account) => account.roles)
   accounts: Account[];

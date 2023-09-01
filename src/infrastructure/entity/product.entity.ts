@@ -8,13 +8,15 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
-import { ProductIngredient } from '@entity/productIngredient.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
-import { ProductReview } from '@entity/productReview.entity';
+import { ProductIngredient } from '@entity/productIngredient.entity';
 import { ProductPromotion } from '@entity/productPromotion.entity';
+import { ProductReview } from '@entity/productReview.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {
@@ -24,21 +26,27 @@ export class Product extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'category_id' })
+  @Column({ name: 'category_id', type: 'int' })
   @Index()
   categoryId: number;
 
   @Column({ type: 'float' })
   price: number;
 
-  @Column({ type: 'varchar', name: 'image_url' })
+  @Column({ name: 'image_url', type: 'varchar' })
   imageUrl: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'product_description' })
+  @Column({ name: 'product_description', nullable: true, type: 'varchar' })
   productDescription?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })

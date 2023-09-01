@@ -7,7 +7,9 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
-		BaseEntity
+  BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Menu } from '@entity/menu.entity';
@@ -21,15 +23,21 @@ export class Category extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'menu_id' })
+  @Column({ name: 'menu_id', type: 'int' })
   @Index()
   menuId: number;
 
-  @Column({ type: 'varchar', nullable: true, name: 'category_description' })
+  @Column({ name: 'category_description', nullable: true, type: 'varchar' })
   categoryDescription?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Menu, (menu) => menu.categories)
   @JoinColumn({ name: 'menu_id' })

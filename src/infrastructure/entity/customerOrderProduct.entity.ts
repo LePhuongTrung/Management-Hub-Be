@@ -7,6 +7,8 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { Order } from '@entity/order.entity';
@@ -17,13 +19,13 @@ export class CustomerOrderProducts extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', name: 'phone_number' })
+  @Column({ name: 'phone_number', type: 'varchar' })
   phoneNumber: string;
 
-  @Column({ type: 'int', name: 'product_id' })
+  @Column({ name: 'product_id', type: 'int' })
   productId: number;
 
-  @Column({ type: 'int', name: 'order_id' })
+  @Column({ name: 'order_id', type: 'int' })
   @Index()
   orderId: number;
 
@@ -33,11 +35,17 @@ export class CustomerOrderProducts extends BaseEntity {
   @Column({ type: 'float' })
   price: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Order, (order) => order.customerOrderProducts)
   @JoinColumn({ name: 'order_id' })

@@ -7,12 +7,14 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { Brand } from '@entity/brand.entity';
-import { Menu } from '@entity/menu.entity';
 import { Account } from '@entity/account.entity';
+import { Brand } from '@entity/brand.entity';
 import { Inventory } from '@entity/inventories.entity';
+import { Menu } from '@entity/menu.entity';
 import { Order } from '@entity/order.entity';
 
 @Entity('restaurants')
@@ -23,17 +25,23 @@ export class Restaurant extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'brand_id' })
+  @Column({ name: 'brand_id', type: 'int' })
   brandId: number;
 
   @Column({ type: 'varchar' })
   location: string;
 
-  @Column({ type: 'varchar', nullable: true, name: 'restaurant_description' })
+  @Column({ name: 'restaurant_description', nullable: true, type: 'varchar' })
   restaurantDescription?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Brand, (brand) => brand.restaurants)
   @JoinColumn({ name: 'brand_id' })

@@ -6,20 +6,22 @@ import {
   ManyToOne,
   JoinColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { Product } from '@entity/product.entity';
 import { Ingredient } from '@entity/ingredient.entity';
+import { Product } from '@entity/product.entity';
 
 @Entity('product_ingredients')
-export class ProductIngredient extends BaseEntity  {
+export class ProductIngredient extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'product_id' })
+  @Column({ name: 'product_id', type: 'int' })
   productId: number;
 
-  @Column({ type: 'int', name: 'ingredient_id' })
+  @Column({ name: 'ingredient_id', type: 'int' })
   ingredientId: number;
 
   @Column({ type: 'varchar' })
@@ -27,6 +29,12 @@ export class ProductIngredient extends BaseEntity  {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.productIngredients)
   @JoinColumn({ name: 'product_id' })

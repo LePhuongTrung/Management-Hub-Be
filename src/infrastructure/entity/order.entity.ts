@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -8,43 +9,61 @@ import {
   Index,
   CreateDateColumn,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  AfterLoad,
 } from 'typeorm';
 
-import { OrderStatus } from '@enums/orderStatus.enum';
-
 import { Account } from '@entity/account.entity';
-import { Restaurant } from '@entity/restaurant.entity';
 import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
+import { Restaurant } from '@entity/restaurant.entity';
+import { BadRequestMessages } from '@enums/message.enum';
+import { OrderStatus } from '@enums/orderStatus.enum';
 
 @Entity('orders')
 export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'int', name: 'customer_id' })
+  @Column({ name: 'customer_id', type: 'int' })
   @Index()
   customerId: number;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   @Index()
   restaurantId: number;
 
-  @Column({ type: 'timestamp', name: 'order_date' })
+  @Column({ name: 'order_date', type: 'timestamp' })
   orderDate: Date;
 
   @Column({
-    type: 'enum',
-    enum: OrderStatus,
     default: OrderStatus.PENDING,
-    name: 'order_status',
+    type: 'int',
   })
   orderStatus: number;
 
-  @Column({ type: 'float', name: 'total_amount' })
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateOrderStatus(): void {
+    if (!Object.values(OrderStatus).includes(this.orderStatus)) {
+      throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
+    }
+  }
+
+  @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Account, (account) => account.orders)
   @JoinColumn({ name: 'customer_id' })

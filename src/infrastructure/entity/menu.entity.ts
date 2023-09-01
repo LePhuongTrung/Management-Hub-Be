@@ -7,10 +7,12 @@ import {
   JoinColumn,
   OneToMany,
   BaseEntity,
+  UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
-import { Restaurant } from '@entity/restaurant.entity';
 import { Category } from '@entity/category.entity';
+import { Restaurant } from '@entity/restaurant.entity';
 
 @Entity('menus')
 export class Menu extends BaseEntity {
@@ -20,14 +22,20 @@ export class Menu extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'int', name: 'restaurant_id' })
+  @Column({ name: 'restaurant_id', type: 'int' })
   restaurantId: number;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   description?: string;
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.menus)
   @JoinColumn({ name: 'restaurant_id' })
