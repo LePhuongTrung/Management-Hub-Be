@@ -20,6 +20,7 @@ module.exports = {
     'sonarjs',
     'canonical',
     'promise',
+    'unicorn',
   ],
   extends: [
     'eslint:recommended',
