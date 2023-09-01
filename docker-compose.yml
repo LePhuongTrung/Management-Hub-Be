@@ -40,5 +40,3 @@ services:
       PGADMIN_SERVER_JSON_PATH: /var/lib/pgadmin/servers.json
       PGADMIN_SERVER_JSON_FILE: /var/lib/pgadmin/servers.json
       PGADMIN_SERVER_JSON_ENCRYPTION_KEY: 'my-secret-key-12345'
-    volumes:
-      - ./docker/database/pgAdmin:/var/lib/pgadmin
