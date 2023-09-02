@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
-import { ProductIngredient } from '@entity/productIngredient.entity';
+import { ProductIngredient } from '@entity/product-ingredient.entity';
 
 @Entity('ingredients')
 export class Ingredient extends BaseEntity {

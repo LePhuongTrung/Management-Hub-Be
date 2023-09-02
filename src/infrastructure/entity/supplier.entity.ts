@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
-import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
+import { PurchaseInvoice } from '@entity/purchase-invoices.entity';
 
 @Entity('suppliers')
 export class Supplier extends BaseEntity {

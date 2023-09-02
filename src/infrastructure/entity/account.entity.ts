@@ -17,10 +17,10 @@ import {
 
 import { Brand } from '@entity/brand.entity';
 import { Order } from '@entity/order.entity';
-import { ProductReview } from '@entity/productReview.entity';
+import { ProductReview } from '@entity/product-review.entity';
 import { Restaurant } from '@entity/restaurant.entity';
 import { Role } from '@entity/role.entity';
-import { AccountStatus } from '@enums/accountStatus.enum';
+import { AccountStatus } from '@enums/account-status.enum';
 import { Gender } from '@enums/gender.enum';
 import { BadRequestMessages } from '@enums/message.enum';
 

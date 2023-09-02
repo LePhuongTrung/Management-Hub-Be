@@ -13,10 +13,10 @@ import {
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
-import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
-import { ProductIngredient } from '@entity/productIngredient.entity';
-import { ProductPromotion } from '@entity/productPromotion.entity';
-import { ProductReview } from '@entity/productReview.entity';
+import { CustomerOrderProducts } from '@entity/customer-order-product.entity';
+import { ProductIngredient } from '@entity/product-ingredient.entity';
+import { ProductPromotion } from '@entity/product-promotion.entity';
+import { ProductReview } from '@entity/product-review.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {

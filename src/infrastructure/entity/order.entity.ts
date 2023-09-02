@@ -17,10 +17,10 @@ import {
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
-import { CustomerOrderProducts } from '@entity/customerOrderProduct.entity';
+import { CustomerOrderProducts } from '@entity/customer-order-product.entity';
 import { Restaurant } from '@entity/restaurant.entity';
 import { BadRequestMessages } from '@enums/message.enum';
-import { OrderStatus } from '@enums/orderStatus.enum';
+import { OrderStatus } from '@enums/order-status.enum';
 
 @Entity('orders')
 export class Order extends BaseEntity {

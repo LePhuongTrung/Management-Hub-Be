@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Seeder, Factory } from 'typeorm-seeding';
 
 import { Role } from '@entity/role.entity';
-import { RoleTypes } from '@enums/roleTypes.enum';
+import { RoleTypes } from '@enums/role-types.enum';
 
 @Injectable()
 export class RoleCreateSeed implements Seeder {

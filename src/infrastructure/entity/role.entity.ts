@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
-import { RoleTypes } from '@enums/roleTypes.enum';
+import { RoleTypes } from '@enums/role-types.enum';
 
 @Entity('roles')
 @Unique(['name'])

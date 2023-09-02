@@ -16,8 +16,8 @@ import {
 } from 'typeorm';
 
 import { Ingredient } from '@entity/ingredient.entity';
-import { InventoryAdjustment } from '@entity/inventoryAdjustment.entity';
-import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
+import { InventoryAdjustment } from '@entity/inventory-adjustment.entity';
+import { PurchaseInvoice } from '@entity/purchase-invoices.entity';
 import { Restaurant } from '@entity/restaurant.entity';
 import { IngredientUnitEnum } from '@enums/ingredient.enum';
 import { BadRequestMessages } from '@enums/message.enum';
