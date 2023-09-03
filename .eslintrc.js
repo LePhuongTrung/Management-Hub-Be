@@ -70,6 +70,12 @@ module.exports = {
     'clean-code/feature-envy': 'error',
     'n/exports-style': ['error', 'module.exports'],
     'canonical/import-specifier-newline': 'off',
+    'jest/expect-expect': [
+      'error',
+      {
+        assertFunctionNames: ['expect', 'request.**.expect'],
+      },
+    ],
   },
   settings: {
     'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
