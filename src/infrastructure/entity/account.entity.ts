@@ -23,6 +23,7 @@ import { Role } from '@entity/role.entity';
 import { AccountStatus } from '@enums/account-status.enum';
 import { Gender } from '@enums/gender.enum';
 import { BadRequestMessages } from '@enums/message.enum';
+import { ExpiresInValidator } from '@src/auth/dto/expires-in.validator';
 
 @Entity('accounts')
 export class Account extends BaseEntity {
@@ -86,8 +87,18 @@ export class Account extends BaseEntity {
     }
   }
 
-  @Column({ name: 'token_date', type: 'timestamp' })
-  tokenDate: Date;
+  @Column({ name: 'token_date', type: 'varchar' })
+  tokenDate: string;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  @AfterLoad()
+  validateTokenDate(): void {
+    const validator = new ExpiresInValidator();
+    if (!validator.validate(this.tokenDate)) {
+      throw new BadRequestException(validator.defaultMessage());
+    }
+  }
 
   @CreateDateColumn()
   createdAt: Date;

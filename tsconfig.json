@@ -14,7 +14,8 @@
       "@enums/*": ["./src/common/enums/*"],
       "@entity/*": ["./src/infrastructure/entity/*"],
       "@src/*": ["./src/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@module/auth/*": ["./src/auth/*"]
     },
     "incremental": true,
     "skipLibCheck": true,

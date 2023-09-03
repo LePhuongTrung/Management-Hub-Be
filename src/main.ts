@@ -14,7 +14,7 @@ async function bootstrap(): Promise<void> {
 
 function configureApp(app: INestApplication): void {
   app.get(ConfigService);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableCors();
 }
 

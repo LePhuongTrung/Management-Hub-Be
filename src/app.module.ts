@@ -6,6 +6,8 @@ import { DatabaseModule } from '@config/database.module';
 import { AppController } from '@src/app.controller';
 import { AppService } from '@src/app.service';
 
+import { AuthModule } from './auth/auth.module';
+
 @Module({
   controllers: [AppController],
   imports: [
@@ -13,6 +15,7 @@ import { AppService } from '@src/app.service';
     ConfigModule.forRoot({
       load: [config],
     }),
+    AuthModule,
   ],
   providers: [AppService],
 })
