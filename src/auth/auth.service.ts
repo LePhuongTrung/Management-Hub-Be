@@ -52,13 +52,12 @@ export class AuthService {
     return this.generateToken(savedAccount);
   }
 
-  private generateToken(account: Account): {
-    access_token: string;
-    token_date: Date;
-  } {
+  private async generateToken(
+    account: Account,
+  ): Promise<{ access_token: string; token_date: Date }> {
     const payload = { sub: account.id, username: account.username };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: await this.jwtService.signAsync(payload),
       token_date: new Date(),
     };
   }
@@ -66,5 +65,4 @@ export class AuthService {
 
 export interface RegisterResponse {
   access_token: string;
-  token_date: Date;
 }

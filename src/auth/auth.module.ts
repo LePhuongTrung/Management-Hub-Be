@@ -10,12 +10,13 @@ import { AuthService } from '@module/auth/auth.service';
 @Module({
   controllers: [AuthController],
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forFeature([Account]),
     JwtModule.register({
+      global: true,
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '60m' },
     }),
-    ConfigModule.forRoot(),
   ],
   providers: [AuthService],
 })
