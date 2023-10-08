@@ -3,19 +3,16 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Index,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Order } from '@entity/order.entity';
 import { Product } from '@entity/product.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('customer_order_products')
-export class CustomerOrderProducts extends BaseEntity {
+export class CustomerOrderProducts extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -37,15 +34,6 @@ export class CustomerOrderProducts extends BaseEntity {
 
   @Column({ nullable: true, type: 'varchar' })
   description?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Order, (order) => order.customerOrderProducts)
   @JoinColumn({ name: 'order_id' })

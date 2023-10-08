@@ -2,20 +2,17 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
   OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
 import { Restaurant } from '@entity/restaurant.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('menus')
-export class Menu extends BaseEntity {
+export class Menu extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,15 +24,6 @@ export class Menu extends BaseEntity {
 
   @Column({ nullable: true, type: 'varchar' })
   description?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.menus)
   @JoinColumn({ name: 'restaurant_id' })

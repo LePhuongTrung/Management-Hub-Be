@@ -7,10 +7,6 @@ import {
   JoinColumn,
   OneToMany,
   Index,
-  CreateDateColumn,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
   AfterLoad,
@@ -19,11 +15,12 @@ import {
 import { Account } from '@entity/account.entity';
 import { CustomerOrderProducts } from '@entity/customer-order-product.entity';
 import { Restaurant } from '@entity/restaurant.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 import { BadRequestMessages } from '@enums/message.enum';
 import { OrderStatus } from '@enums/order-status.enum';
 
 @Entity('orders')
-export class Order extends BaseEntity {
+export class Order extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -55,15 +52,6 @@ export class Order extends BaseEntity {
 
   @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Account, (account) => account.orders)
   @JoinColumn({ name: 'customer_id' })

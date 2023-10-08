@@ -3,19 +3,16 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Unique,
-  CreateDateColumn,
   OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Account } from '@entity/account.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 import { RoleTypes } from '@enums/role-types.enum';
 
 @Entity('roles')
 @Unique(['name'])
-export class Role extends BaseEntity {
+export class Role extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,15 +26,6 @@ export class Role extends BaseEntity {
 
   @Column({ nullable: true, type: 'varchar' })
   description?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @OneToMany(() => Account, (account) => account.roles)
   accounts: Account[];

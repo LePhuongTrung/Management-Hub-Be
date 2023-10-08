@@ -5,17 +5,14 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
-  BaseEntity,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
 import { Supplier } from '@entity/supplier.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('purchase_invoices')
-export class PurchaseInvoice extends BaseEntity {
+export class PurchaseInvoice extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,15 +24,6 @@ export class PurchaseInvoice extends BaseEntity {
 
   @Column({ name: 'total_amount', type: 'float' })
   totalAmount: number;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Supplier, (supplier) => supplier.purchaseInvoices)
   @JoinColumn({ name: 'product_id' })

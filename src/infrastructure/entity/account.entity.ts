@@ -3,13 +3,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
   OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
   AfterLoad,
@@ -20,13 +16,14 @@ import { Order } from '@entity/order.entity';
 import { ProductReview } from '@entity/product-review.entity';
 import { Restaurant } from '@entity/restaurant.entity';
 import { Role } from '@entity/role.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 import { AccountStatus } from '@enums/account-status.enum';
 import { Gender } from '@enums/gender.enum';
 import { BadRequestMessages } from '@enums/message.enum';
 import { ExpiresInValidator } from '@src/auth/dto/expires-in.validator';
 
 @Entity('accounts')
-export class Account extends BaseEntity {
+export class Account extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -99,15 +96,6 @@ export class Account extends BaseEntity {
       throw new BadRequestException(validator.defaultMessage());
     }
   }
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Role, (role) => role.accounts)
   @JoinColumn({ name: 'role_id' })

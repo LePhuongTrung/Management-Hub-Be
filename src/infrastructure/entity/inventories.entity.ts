@@ -3,13 +3,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
   OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
   AfterLoad,
@@ -19,11 +15,12 @@ import { Ingredient } from '@entity/ingredient.entity';
 import { InventoryAdjustment } from '@entity/inventory-adjustment.entity';
 import { PurchaseInvoice } from '@entity/purchase-invoices.entity';
 import { Restaurant } from '@entity/restaurant.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 import { IngredientUnitEnum } from '@enums/ingredient.enum';
 import { BadRequestMessages } from '@enums/message.enum';
 
 @Entity('inventories')
-export class Inventory extends BaseEntity {
+export class Inventory extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -63,15 +60,6 @@ export class Inventory extends BaseEntity {
       throw new BadRequestException(BadRequestMessages.INVALID_ACCRUAL_RATE);
     }
   }
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Ingredient, (ingredient) => ingredient.inventories)
   @JoinColumn({ name: 'ingredient_id' })

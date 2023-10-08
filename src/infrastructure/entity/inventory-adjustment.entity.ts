@@ -4,16 +4,13 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
-  BaseEntity,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('inventory_adjustments')
-export class InventoryAdjustment extends BaseEntity {
+export class InventoryAdjustment extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -32,13 +29,4 @@ export class InventoryAdjustment extends BaseEntity {
   @ManyToOne(() => Inventory)
   @JoinColumn({ name: 'inventory_id' })
   inventory: Inventory;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 }

@@ -3,13 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Index,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
   OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Category } from '@entity/category.entity';
@@ -17,9 +13,10 @@ import { CustomerOrderProducts } from '@entity/customer-order-product.entity';
 import { ProductIngredient } from '@entity/product-ingredient.entity';
 import { ProductPromotion } from '@entity/product-promotion.entity';
 import { ProductReview } from '@entity/product-review.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('products')
-export class Product extends BaseEntity {
+export class Product extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -38,15 +35,6 @@ export class Product extends BaseEntity {
 
   @Column({ name: 'product_description', nullable: true, type: 'varchar' })
   productDescription?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
