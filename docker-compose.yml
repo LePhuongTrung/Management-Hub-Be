@@ -26,10 +26,10 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: manage_hub
     volumes:
-      - ./docker/database/data:/var/lib/postgresql/data
+      - ./docker/database/pg:/docker-entrypoint-initdb.d
 
   pgadmin:
-    build: ./docker/database
+    build: ./docker/database/pgadmin
     ports:
       - '5050:80'
     depends_on:

@@ -1,6 +1,7 @@
 export enum BadRequestMessages {
   BAD_REQUEST = 'Bad Request',
   INVALID_ACCRUAL_RATE = 'Invalid accrual rate',
+  INVALID_TOKEN_EXPIRATION = 'Invalid value for token expiration',
 }
 
 export enum UnauthorizedMessages {

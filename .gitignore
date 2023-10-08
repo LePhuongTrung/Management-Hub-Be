@@ -27,10 +27,3 @@ outDir/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-### Database dev ###
-postgresql/data/
-
-### Docker ###
-docker/database/data
-docker/database/pgAdmin

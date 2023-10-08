@@ -2,19 +2,16 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
   ManyToOne,
   JoinColumn,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
 } from 'typeorm';
 
 import { Ingredient } from '@entity/ingredient.entity';
 import { Product } from '@entity/product.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('product_ingredients')
-export class ProductIngredient extends BaseEntity {
+export class ProductIngredient extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,15 +23,6 @@ export class ProductIngredient extends BaseEntity {
 
   @Column({ type: 'varchar' })
   volume: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.productIngredients)
   @JoinColumn({ name: 'product_id' })

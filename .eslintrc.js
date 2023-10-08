@@ -21,6 +21,7 @@ module.exports = {
     'canonical',
     'promise',
     'unicorn',
+	"unused-imports",
   ],
   extends: [
     'eslint:recommended',
@@ -54,11 +55,13 @@ module.exports = {
       },
     ],
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+	"unused-imports/no-unused-imports": "error",
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     'n/no-missing-import': 'off',
+    'nestjs/use-validation-pipe': 0,
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-var-requires': 'error',
     '@typescript-eslint/ban-ts-comment': 'warn',
@@ -66,10 +69,15 @@ module.exports = {
     'nestjs/parse-int-pipe': 'error',
     'nestjs/deprecated-api-modules': 'error',
     'nestjs/use-dependency-injection': 'error',
-    'nestjs/use-validation-pipe': 'error',
     'clean-code/feature-envy': 'error',
     'n/exports-style': ['error', 'module.exports'],
     'canonical/import-specifier-newline': 'off',
+    'jest/expect-expect': [
+      'error',
+      {
+        assertFunctionNames: ['expect', 'request.**.expect'],
+      },
+    ],
   },
   settings: {
     'import/parsers': { '@typescript-eslint/parser': ['.ts'] },

@@ -4,7 +4,7 @@ import { define } from 'typeorm-seeding';
 
 import { Role } from '@entity/role.entity';
 import { InternalServerErrorMessages } from '@enums/message.enum';
-import { RoleTypes } from '@enums/roleTypes.enum';
+import { RoleTypes } from '@enums/role-types.enum';
 
 define(Role, () => {
   const role = new Role();

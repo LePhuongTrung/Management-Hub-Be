@@ -1,19 +1,11 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 import { Inventory } from '@entity/inventories.entity';
-import { ProductIngredient } from '@entity/productIngredient.entity';
+import { ProductIngredient } from '@entity/product-ingredient.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('ingredients')
-export class Ingredient extends BaseEntity {
+export class Ingredient extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,15 +14,6 @@ export class Ingredient extends BaseEntity {
 
   @Column({ name: 'ingredient_description', nullable: true, type: 'varchar' })
   ingredientDescription?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @OneToMany(
     () => ProductIngredient,

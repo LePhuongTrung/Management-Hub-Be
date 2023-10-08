@@ -1,18 +1,10 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  OneToMany,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { PurchaseInvoice } from '@entity/purchaseInvoices.entity';
+import { PurchaseInvoice } from '@entity/purchase-invoices.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 
 @Entity('suppliers')
-export class Supplier extends BaseEntity {
+export class Supplier extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,15 +16,6 @@ export class Supplier extends BaseEntity {
 
   @Column({ nullable: true, type: 'varchar' })
   description?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @OneToMany(
     () => PurchaseInvoice,

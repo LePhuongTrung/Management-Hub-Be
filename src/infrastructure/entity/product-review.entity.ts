@@ -5,10 +5,6 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
-  CreateDateColumn,
-  BaseEntity,
-  UpdateDateColumn,
-  DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
   AfterLoad,
@@ -16,11 +12,12 @@ import {
 
 import { Account } from '@entity/account.entity';
 import { Product } from '@entity/product.entity';
+import { TimestampedEntity } from '@entity/timestamped.entity';
 import { BadRequestMessages } from '@enums/message.enum';
 import { RatingEnum } from '@enums/rating.enum';
 
 @Entity('product_reviews')
-export class ProductReview extends BaseEntity {
+export class ProductReview extends TimestampedEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -47,15 +44,6 @@ export class ProductReview extends BaseEntity {
 
   @Column({ type: 'varchar' })
   comment: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deleteAt: Date;
 
   @ManyToOne(() => Product, (product) => product.reviews)
   @JoinColumn({ name: 'product_id' })
