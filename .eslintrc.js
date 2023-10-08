@@ -21,6 +21,7 @@ module.exports = {
     'canonical',
     'promise',
     'unicorn',
+	"unused-imports",
   ],
   extends: [
     'eslint:recommended',
@@ -54,6 +55,7 @@ module.exports = {
       },
     ],
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+	"unused-imports/no-unused-imports": "error",
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
